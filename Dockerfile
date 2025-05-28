@@ -7,10 +7,11 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends \
     libsndfile1 \
     ffmpeg \
+    git \
     && rm -rf /var/lib/apt/lists/*
 
-# Install MeloTTS (no license prompts)
-RUN pip install melotts
+# Install MeloTTS from GitHub
+RUN pip install git+https://github.com/myshell-ai/MeloTTS.git
 
 EXPOSE 8000
 
