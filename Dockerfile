@@ -12,9 +12,12 @@ RUN pip install --upgrade pip && \
     pip install torch torchaudio --index-url https://download.pytorch.org/whl/cpu && \
     pip install TTS==0.22.0
 
+# Create working directory
+WORKDIR /app
+
 # Create a simple server script
-RUN echo "from TTS.server.server import main; main()" > /app/server.py
+RUN echo "from TTS.server.server import main; main()" > server.py
 
 EXPOSE 5002
 
-CMD ["python", "/app/server.py", "--model_name", "tts_models/multilingual/multi-dataset/xtts_v2"]
+CMD ["python", "server.py", "--model_name", "tts_models/multilingual/multi-datase]()
