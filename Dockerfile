@@ -1,5 +1,8 @@
 FROM python:3.10-slim
 
+# Create app directory first
+WORKDIR /app
+
 # Install system dependencies
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
@@ -12,12 +15,9 @@ RUN pip install --upgrade pip && \
     pip install torch torchaudio --index-url https://download.pytorch.org/whl/cpu && \
     pip install TTS==0.22.0
 
-# Create working directory
-WORKDIR /app
-
-# Create a simple server script
+# Create server script
 RUN echo "from TTS.server.server import main; main()" > server.py
 
 EXPOSE 5002
 
-CMD ["python", "server.py", "--model_name", "tts_models/multilingual/multi-datase]()
+CMD ["python", "server.py", "--model_name", "tts_models/multilingual/multi-dataset/xtts_v2"]
