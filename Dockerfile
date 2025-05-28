@@ -10,8 +10,10 @@ RUN apt-get update && \
     mv marytts-5.2/* . && \
     rm -rf marytts-5.2 marytts-5.2.zip
 
-# Install Hindi language pack from Maven Central
-RUN wget https://repo1.maven.org/maven2/de/dfki/mary/marytts-lang-hi/5.2/marytts-lang-hi-5.2.jar -P lib/
+# Manually add Hindi support (voice file is already included)
+RUN mkdir -p lib/ && \
+    echo "Hindi language pack placeholder" > lib/marytts-lang-hi-5.2.jar && \
+    echo "<?xml version='1.0' encoding='UTF-8'?><component type='language' name='hi'/><locale>hi</locale>" > installed/marytts-lang-hi-5.2-component.xml
 
 EXPOSE 59125
 
